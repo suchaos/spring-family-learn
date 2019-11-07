@@ -23,6 +23,10 @@ spring:
           statement-executable-sql-log-enable: true
           statement-log-error-enabled: true
           result-set-log-enabled: false
+        stat:
+          enabled: true
+          log-slow-sql: true
+          slow-sql-millis: 0
 
 management:
   endpoints:
