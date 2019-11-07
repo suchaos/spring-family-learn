@@ -6,6 +6,7 @@ import org.springframework.aop.framework.AopProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -19,6 +20,9 @@ public class FooServiceImpl implements FooService {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    private FooService fooService;
 
     @Override
     @Transactional
@@ -42,5 +46,25 @@ public class FooServiceImpl implements FooService {
     @Override
     public void invokeInsertThenRollback() throws RollbackException {
         insertThenRollback();
+    }
+
+    @Override
+    //@Transactional(propagation = Propagation.NESTED)
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    //@Transactional(propagation = Propagation.REQUIRED)
+    public void inner() {
+        jdbcTemplate.execute("insert into foo (bar) values ('inner')");
+        throw new RuntimeException();
+    }
+
+    @Override
+    @Transactional
+    public void outer() {
+        jdbcTemplate.execute("insert into foo (bar) values ('outer')");
+        try {
+            fooService.inner();
+        } catch (RuntimeException e) {
+        }
+        //throw new RuntimeException();
     }
 }

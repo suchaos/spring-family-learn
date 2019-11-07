@@ -31,6 +31,11 @@ public class DeclarativeTransactionApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        //test1();
+        test2();
+    }
+
+    private void test1() {
         fooService.insertRecord();
         log.info("aaa {}", jdbcTemplate.queryForObject("select count(*) from foo where bar='aaa'", Long.class));
         try {
@@ -44,5 +49,9 @@ public class DeclarativeTransactionApplication implements CommandLineRunner {
         } catch (Exception e) {
             log.info("bbb {}", jdbcTemplate.queryForObject("select count(*) from foo where bar='bbb'", Long.class));
         }
+    }
+
+    private void test2() {
+        fooService.outer();
     }
 }
