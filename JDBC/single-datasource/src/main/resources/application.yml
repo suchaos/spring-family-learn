@@ -1,0 +1,20 @@
+# 单数据源配置 mysql8
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/test?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=true
+    username: root
+    password: password
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    platform: mysql
+#    schema: schema.sql
+#    data: data.sql
+    initialization-mode: never
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  server:
+    port: 8081
