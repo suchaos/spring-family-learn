@@ -8,7 +8,7 @@ spring:
     platform: mysql
 #    schema: schema.sql
 #    data: data.sql
-    initialization-mode: never
+    initialization-mode: always
 
 
 management:
