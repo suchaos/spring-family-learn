@@ -19,7 +19,7 @@ spring:
           enabled: true
           statement-create-after-log-enabled: false
           statement-log-enabled: false
-          # 输出可执行 sql 日志 -- 但是 高版本 好像不起作用
+          # 输出可执行 sql 日志
           statement-executable-sql-log-enable: true
           statement-log-error-enabled: true
           result-set-log-enabled: false
@@ -31,8 +31,14 @@ management:
         include: "*"
   server:
     port: 8081
+
 logging:
   level:
     druid:
       sql:
         Statement: debug
+    org:
+      springframework:
+        jdbc:
+          core:
+            JdbcTemplate: debug
