@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 /**
@@ -38,6 +39,12 @@ public class SpringBucksService {
     public void initOrders() {
         Coffee espresso = Coffee.builder().name("espresso").
                 price(Money.of(CurrencyUnit.of("CNY"), 20.0)).build();
+        coffeeRepository.save(espresso);
+        log.info("Coffee: " + espresso);
+
+        sleep(TimeUnit.SECONDS, 10);
+
+        espresso.setPrice(Money.of(CurrencyUnit.of("CNY"), 25.0));
         coffeeRepository.save(espresso);
         log.info("Coffee: " + espresso);
 
@@ -80,5 +87,13 @@ public class SpringBucksService {
     private String getJoinedOrderId(List<CoffeeOrder> list) {
         return list.stream().map(o -> o.getId().toString())
                 .collect(Collectors.joining(","));
+    }
+
+    private void sleep(TimeUnit unit, Integer num) {
+        try {
+            unit.sleep(num);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
