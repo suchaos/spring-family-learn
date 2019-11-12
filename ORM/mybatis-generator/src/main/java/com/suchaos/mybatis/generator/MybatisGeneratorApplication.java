@@ -2,6 +2,7 @@ package com.suchaos.mybatis.generator;
 
 import com.github.pagehelper.PageHelper;
 import com.suchaos.mybatis.generator.mapper.auto.CoffeeMapper;
+import com.suchaos.mybatis.generator.mapper.manual.CoffeeExtendMapper;
 import com.suchaos.mybatis.generator.model.auto.Coffee;
 import com.suchaos.mybatis.generator.model.auto.CoffeeExample;
 import lombok.extern.slf4j.Slf4j;
@@ -15,11 +16,14 @@ import java.util.List;
 
 @Slf4j
 @SpringBootApplication
-@MapperScan("com.suchaos.mybatis.generator.mapper.auto")
+@MapperScan("com.suchaos.mybatis.generator.mapper")
 public class MybatisGeneratorApplication implements CommandLineRunner {
 
     @Autowired
     private CoffeeMapper coffeeMapper;
+
+    @Autowired
+    private CoffeeExtendMapper coffeeExtendMapper;
 
     public static void main(String[] args) {
         SpringApplication.run(MybatisGeneratorApplication.class, args);
@@ -32,7 +36,8 @@ public class MybatisGeneratorApplication implements CommandLineRunner {
         CoffeeExample.Criteria criteria = coffeeExample.createCriteria();
         criteria.andNameLike("san%");
         PageHelper.startPage(1, 2);
-        List<Coffee> coffees = coffeeMapper.selectByExample(coffeeExample);
+        // List<Coffee> coffees = coffeeMapper.selectByExample(coffeeExample);
+        List<Coffee> coffees = coffeeExtendMapper.selectByExample(coffeeExample);
         coffees.forEach(coffee -> log.info("coffee: {}", coffee));
     }
 }
