@@ -12,7 +12,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
  * @author suchao
  * @date 2019/11/12
  */
-//@Configuration
+@Configuration
 @EnableAspectJAutoProxy
 public class ParentConfig {
 

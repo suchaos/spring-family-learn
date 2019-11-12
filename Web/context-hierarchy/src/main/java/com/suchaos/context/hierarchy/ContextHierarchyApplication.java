@@ -15,6 +15,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 @Slf4j
 public class ContextHierarchyApplication implements CommandLineRunner {
 
+
 	public static void main(String[] args) {
 		SpringApplication.run(ContextHierarchyApplication.class, args);
 	}

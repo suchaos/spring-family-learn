@@ -13,7 +13,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
  * @date 2019/11/12
  */
 //@Configuration
-//@EnableAspectJAutoProxy
+@EnableAspectJAutoProxy
 public class ChildConfig {
 
     @Bean
@@ -26,8 +26,8 @@ public class ChildConfig {
 //        return new TestBean("parent bean Y");
 //    }
 //
-    @Bean
-    public TestAspect testAspect() {
-        return new TestAspect();
-    }
+//    @Bean
+//    public TestAspect testAspect() {
+//        return new TestAspect();
+//    }
 }
