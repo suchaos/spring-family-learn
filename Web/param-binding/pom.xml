@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.suchaos</groupId>
-	<artifactId>context-hierarchy</artifactId>
+	<artifactId>param-binding</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>context-hierarchy</name>
-	<description>Spring 父子容器 AOP 的演示</description>
+	<name>param-binding</name>
+	<description>参数绑定</description>
 
 	<properties>
 		<java.version>1.8</java.version>
@@ -23,19 +23,20 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
 		</dependency>
+
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-aop</artifactId>
+			<groupId>org.joda</groupId>
+			<artifactId>joda-money</artifactId>
+			<version>1.0.1</version>
 		</dependency>
 
 		<dependency>
