@@ -1,7 +1,7 @@
-package com.suchaos.mybatis.generator.mapper.auto;
+package com.suchaos.waiter.mapper.auto;
 
-import com.suchaos.mybatis.generator.model.auto.Coffee;
-import com.suchaos.mybatis.generator.model.auto.CoffeeExample;
+import com.suchaos.waiter.model.auto.Coffee;
+import com.suchaos.waiter.model.auto.CoffeeExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;

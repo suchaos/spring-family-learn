@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.suchaos.mybatis.generator.mapper.auto.CoffeeMapper">
-  <resultMap id="BaseResultMap" type="com.suchaos.mybatis.generator.model.auto.Coffee">
+<mapper namespace="com.suchaos.waiter.mapper.auto.CoffeeMapper">
+  <resultMap id="BaseResultMap" type="com.suchaos.waiter.model.auto.Coffee">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="price" jdbcType="BIGINT" property="price" typeHandler="com.suchaos.mybatis.generator.handler.MoneyTypeHandler" />
+    <result column="price" jdbcType="BIGINT" property="price" typeHandler="com.suchaos.waiter.handler.MoneyTypeHandler" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
@@ -38,15 +38,15 @@
                   and ${criterion.condition}
                 </when>
                 <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value,typeHandler=com.suchaos.mybatis.generator.handler.MoneyTypeHandler}
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.suchaos.waiter.handler.MoneyTypeHandler}
                 </when>
                 <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value,typeHandler=com.suchaos.mybatis.generator.handler.MoneyTypeHandler} and #{criterion.secondValue,typeHandler=com.suchaos.mybatis.generator.handler.MoneyTypeHandler}
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.suchaos.waiter.handler.MoneyTypeHandler} and #{criterion.secondValue,typeHandler=com.suchaos.waiter.handler.MoneyTypeHandler}
                 </when>
                 <when test="criterion.listValue">
                   and ${criterion.condition}
                   <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem,typeHandler=com.suchaos.mybatis.generator.handler.MoneyTypeHandler}
+                    #{listItem,typeHandler=com.suchaos.waiter.handler.MoneyTypeHandler}
                   </foreach>
                 </when>
               </choose>
@@ -86,15 +86,15 @@
                   and ${criterion.condition}
                 </when>
                 <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value,typeHandler=com.suchaos.mybatis.generator.handler.MoneyTypeHandler}
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.suchaos.waiter.handler.MoneyTypeHandler}
                 </when>
                 <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value,typeHandler=com.suchaos.mybatis.generator.handler.MoneyTypeHandler} and #{criterion.secondValue,typeHandler=com.suchaos.mybatis.generator.handler.MoneyTypeHandler}
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.suchaos.waiter.handler.MoneyTypeHandler} and #{criterion.secondValue,typeHandler=com.suchaos.waiter.handler.MoneyTypeHandler}
                 </when>
                 <when test="criterion.listValue">
                   and ${criterion.condition}
                   <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem,typeHandler=com.suchaos.mybatis.generator.handler.MoneyTypeHandler}
+                    #{listItem,typeHandler=com.suchaos.waiter.handler.MoneyTypeHandler}
                   </foreach>
                 </when>
               </choose>
@@ -107,7 +107,7 @@
   <sql id="Base_Column_List">
     id, name, price, create_time, update_time
   </sql>
-  <select id="selectByExample" parameterType="com.suchaos.mybatis.generator.model.auto.CoffeeExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.suchaos.waiter.model.auto.CoffeeExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -131,22 +131,22 @@
     delete from t_mybatis_coffee
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.suchaos.mybatis.generator.model.auto.CoffeeExample">
+  <delete id="deleteByExample" parameterType="com.suchaos.waiter.model.auto.CoffeeExample">
     delete from t_mybatis_coffee
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.suchaos.mybatis.generator.model.auto.Coffee">
+  <insert id="insert" parameterType="com.suchaos.waiter.model.auto.Coffee">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into t_mybatis_coffee (name, price, 
       create_time, update_time)
-    values (#{name,jdbcType=VARCHAR}, #{price,jdbcType=BIGINT,typeHandler=com.suchaos.mybatis.generator.handler.MoneyTypeHandler}, 
+    values (#{name,jdbcType=VARCHAR}, #{price,jdbcType=BIGINT,typeHandler=com.suchaos.waiter.handler.MoneyTypeHandler}, 
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.suchaos.mybatis.generator.model.auto.Coffee">
+  <insert id="insertSelective" parameterType="com.suchaos.waiter.model.auto.Coffee">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -170,7 +170,7 @@
         #{name,jdbcType=VARCHAR},
       </if>
       <if test="price != null">
-        #{price,jdbcType=BIGINT,typeHandler=com.suchaos.mybatis.generator.handler.MoneyTypeHandler},
+        #{price,jdbcType=BIGINT,typeHandler=com.suchaos.waiter.handler.MoneyTypeHandler},
       </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
@@ -180,7 +180,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.suchaos.mybatis.generator.model.auto.CoffeeExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.suchaos.waiter.model.auto.CoffeeExample" resultType="java.lang.Long">
     select count(*) from t_mybatis_coffee
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -196,7 +196,7 @@
         name = #{record.name,jdbcType=VARCHAR},
       </if>
       <if test="record.price != null">
-        price = #{record.price,jdbcType=BIGINT,typeHandler=com.suchaos.mybatis.generator.handler.MoneyTypeHandler},
+        price = #{record.price,jdbcType=BIGINT,typeHandler=com.suchaos.waiter.handler.MoneyTypeHandler},
       </if>
       <if test="record.createTime != null">
         create_time = #{record.createTime,jdbcType=TIMESTAMP},
@@ -213,21 +213,21 @@
     update t_mybatis_coffee
     set id = #{record.id,jdbcType=BIGINT},
       name = #{record.name,jdbcType=VARCHAR},
-      price = #{record.price,jdbcType=BIGINT,typeHandler=com.suchaos.mybatis.generator.handler.MoneyTypeHandler},
+      price = #{record.price,jdbcType=BIGINT,typeHandler=com.suchaos.waiter.handler.MoneyTypeHandler},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.suchaos.mybatis.generator.model.auto.Coffee">
+  <update id="updateByPrimaryKeySelective" parameterType="com.suchaos.waiter.model.auto.Coffee">
     update t_mybatis_coffee
     <set>
       <if test="name != null">
         name = #{name,jdbcType=VARCHAR},
       </if>
       <if test="price != null">
-        price = #{price,jdbcType=BIGINT,typeHandler=com.suchaos.mybatis.generator.handler.MoneyTypeHandler},
+        price = #{price,jdbcType=BIGINT,typeHandler=com.suchaos.waiter.handler.MoneyTypeHandler},
       </if>
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -238,15 +238,15 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.suchaos.mybatis.generator.model.auto.Coffee">
+  <update id="updateByPrimaryKey" parameterType="com.suchaos.waiter.model.auto.Coffee">
     update t_mybatis_coffee
     set name = #{name,jdbcType=VARCHAR},
-      price = #{price,jdbcType=BIGINT,typeHandler=com.suchaos.mybatis.generator.handler.MoneyTypeHandler},
+      price = #{price,jdbcType=BIGINT,typeHandler=com.suchaos.waiter.handler.MoneyTypeHandler},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <select id="selectByExampleWithRowbounds" parameterType="com.suchaos.mybatis.generator.model.auto.CoffeeExample" resultMap="BaseResultMap">
+  <select id="selectByExampleWithRowbounds" parameterType="com.suchaos.waiter.model.auto.CoffeeExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct

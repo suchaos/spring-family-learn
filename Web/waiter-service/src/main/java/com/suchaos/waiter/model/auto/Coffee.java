@@ -1,4 +1,4 @@
-package com.suchaos.mybatis.generator.model.auto;
+package com.suchaos.waiter.model.auto;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;

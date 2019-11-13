@@ -1,4 +1,4 @@
-package com.suchaos.mybatis.generator.model.auto;
+package com.suchaos.waiter.model.auto;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -86,7 +86,7 @@ public class CoffeeExample {
             if (value == null) {
                 throw new RuntimeException("Value for " + property + " cannot be null");
             }
-            priceCriteria.add(new Criterion(condition, value, "com.suchaos.mybatis.generator.handler.MoneyTypeHandler"));
+            priceCriteria.add(new Criterion(condition, value, "com.suchaos.waiter.handler.MoneyTypeHandler"));
             allCriteria = null;
         }
 
@@ -94,7 +94,7 @@ public class CoffeeExample {
             if (value1 == null || value2 == null) {
                 throw new RuntimeException("Between values for " + property + " cannot be null");
             }
-            priceCriteria.add(new Criterion(condition, value1, value2, "com.suchaos.mybatis.generator.handler.MoneyTypeHandler"));
+            priceCriteria.add(new Criterion(condition, value1, value2, "com.suchaos.waiter.handler.MoneyTypeHandler"));
             allCriteria = null;
         }
 
