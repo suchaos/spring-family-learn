@@ -1,6 +1,7 @@
 package com.suchaos.waiter.service;
 
 import com.suchaos.waiter.controller.response.NewOrderResponse;
+import com.suchaos.waiter.enumration.OrderState;
 import com.suchaos.waiter.mapper.auto.CoffeeMapper;
 import com.suchaos.waiter.mapper.auto.OrderCoffeeMapper;
 import com.suchaos.waiter.mapper.auto.OrderMapper;
@@ -36,7 +37,7 @@ public class OrderService {
 
     @Transactional
     public Order saveOrder(String customer, List<Long> coffees) {
-        Order order = new Order().withState(0).withCustomer(customer)
+        Order order = new Order().withState(OrderState.INIT).withCustomer(customer)
                 .withCreateTime(LocalDateTime.now())
                 .withUpdateTime(LocalDateTime.now());
         orderMapper.insert(order);

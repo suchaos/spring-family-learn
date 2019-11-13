@@ -1,5 +1,6 @@
 package com.suchaos.waiter.controller.response;
 
+import com.suchaos.waiter.enumration.OrderState;
 import com.suchaos.waiter.model.auto.Coffee;
 import lombok.*;
 
@@ -21,7 +22,7 @@ public class NewOrderResponse {
 
     private String customer;
 
-    private Integer state;
+    private OrderState state;
 
     private List<Coffee> items;
 }

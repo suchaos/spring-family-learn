@@ -46,6 +46,6 @@ logging:
 mybatis:
   configuration:
     map-underscore-to-camel-case: true
-    default-enum-type-handler: org.apache.ibatis.type.EnumOrdinalTypeHandler
-  type-handlers-package: com.suchaos.mybatis.handler
+    # default-enum-type-handler: org.apache.ibatis.type.EnumOrdinalTypeHandler
+  type-handlers-package: com.suchaos.waiter.handler
   mapper-locations: classpath*:/mapper/**/*.xml
