@@ -6,7 +6,7 @@
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="customer" jdbcType="VARCHAR" property="customer" />
-    <result column="state" jdbcType="INTEGER" property="state" />
+    <result column="state" jdbcType="INTEGER" property="state" typeHandler="com.suchaos.waiter.handler.OrderStateTypeHandler" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -28,6 +28,25 @@
                   and ${criterion.condition}
                   <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
                     #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+            <foreach collection="criteria.stateCriteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.suchaos.waiter.handler.OrderStateTypeHandler}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.suchaos.waiter.handler.OrderStateTypeHandler} and #{criterion.secondValue,typeHandler=com.suchaos.waiter.handler.OrderStateTypeHandler}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem,typeHandler=com.suchaos.waiter.handler.OrderStateTypeHandler}
                   </foreach>
                 </when>
               </choose>
@@ -57,6 +76,25 @@
                   and ${criterion.condition}
                   <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
                     #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+            <foreach collection="criteria.stateCriteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.suchaos.waiter.handler.OrderStateTypeHandler}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.suchaos.waiter.handler.OrderStateTypeHandler} and #{criterion.secondValue,typeHandler=com.suchaos.waiter.handler.OrderStateTypeHandler}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem,typeHandler=com.suchaos.waiter.handler.OrderStateTypeHandler}
                   </foreach>
                 </when>
               </choose>
@@ -104,9 +142,11 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into t_mybatis_order (create_time, update_time, customer, 
-      state)
+      state
+      )
     values (#{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{customer,jdbcType=VARCHAR}, 
-      #{state,jdbcType=INTEGER})
+      #{state,jdbcType=INTEGER,typeHandler=com.suchaos.waiter.handler.OrderStateTypeHandler}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.suchaos.waiter.model.auto.Order">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
@@ -138,7 +178,7 @@
         #{customer,jdbcType=VARCHAR},
       </if>
       <if test="state != null">
-        #{state,jdbcType=INTEGER},
+        #{state,jdbcType=INTEGER,typeHandler=com.suchaos.waiter.handler.OrderStateTypeHandler},
       </if>
     </trim>
   </insert>
@@ -164,7 +204,7 @@
         customer = #{record.customer,jdbcType=VARCHAR},
       </if>
       <if test="record.state != null">
-        state = #{record.state,jdbcType=INTEGER},
+        state = #{record.state,jdbcType=INTEGER,typeHandler=com.suchaos.waiter.handler.OrderStateTypeHandler},
       </if>
     </set>
     <if test="_parameter != null">
@@ -177,7 +217,7 @@
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       customer = #{record.customer,jdbcType=VARCHAR},
-      state = #{record.state,jdbcType=INTEGER}
+      state = #{record.state,jdbcType=INTEGER,typeHandler=com.suchaos.waiter.handler.OrderStateTypeHandler}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -195,7 +235,7 @@
         customer = #{customer,jdbcType=VARCHAR},
       </if>
       <if test="state != null">
-        state = #{state,jdbcType=INTEGER},
+        state = #{state,jdbcType=INTEGER,typeHandler=com.suchaos.waiter.handler.OrderStateTypeHandler},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
@@ -205,7 +245,7 @@
     set create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       customer = #{customer,jdbcType=VARCHAR},
-      state = #{state,jdbcType=INTEGER}
+      state = #{state,jdbcType=INTEGER,typeHandler=com.suchaos.waiter.handler.OrderStateTypeHandler}
     where id = #{id,jdbcType=BIGINT}
   </update>
   <select id="selectByExampleWithRowbounds" parameterType="com.suchaos.waiter.model.auto.OrderExample" resultMap="BaseResultMap">

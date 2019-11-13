@@ -32,6 +32,7 @@ public enum OrderState {
     Integer state;
 
     OrderState(Integer state) {
+
         this.state = state;
     }
 

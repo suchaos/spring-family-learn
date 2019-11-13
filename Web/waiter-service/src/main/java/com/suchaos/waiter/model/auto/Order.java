@@ -1,5 +1,6 @@
 package com.suchaos.waiter.model.auto;
 
+import com.suchaos.waiter.enumration.OrderState;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -12,7 +13,7 @@ public class Order implements Serializable {
 
     private String customer;
 
-    private Integer state;
+    private OrderState state;
 
     private static final long serialVersionUID = 1L;
 
@@ -68,16 +69,16 @@ public class Order implements Serializable {
         this.customer = customer == null ? null : customer.trim();
     }
 
-    public Integer getState() {
+    public OrderState getState() {
         return state;
     }
 
-    public Order withState(Integer state) {
+    public Order withState(OrderState state) {
         this.setState(state);
         return this;
     }
 
-    public void setState(Integer state) {
+    public void setState(OrderState state) {
         this.state = state;
     }
 
