@@ -53,5 +53,13 @@
             <columnOverride column="price" javaType="org.joda.money.Money" jdbcType="BIGINT"
                             typeHandler="com.suchaos.mybatis.generator.handler.MoneyTypeHandler"/>
         </table>
+
+        <table tableName="t_mybatis_order" domainObjectName="Order" >
+            <!--注入主键-->
+            <generatedKey column="id" sqlStatement="MySql" identity="true" />
+        </table>
+
+        <table tableName="t_mybatis_order_coffee" domainObjectName="OrderCoffee" >
+        </table>
     </context>
 </generatorConfiguration>
