@@ -1,12 +1,15 @@
 package com.suchaos.customerservice.controller;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.suchaos.customerservice.integration.CoffeeService;
 import com.suchaos.customerservice.model.Coffee;
 import com.suchaos.customerservice.model.request.NewCoffeeRequest;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -17,14 +20,24 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/coffee")
+@Slf4j
 public class CoffeeController {
 
     @Autowired
     private CoffeeService coffeeService;
 
     @GetMapping(value = "/", params = "!name")
+    //@HystrixCommand(fallbackMethod = "fallbackGetAllCoffee")
     public List<Coffee> getAll() {
-        return coffeeService.getAll();
+        log.info("开始");
+        List<Coffee> all = coffeeService.getAll();
+        log.info("正常结束");
+        return all;
+    }
+
+    public List<Coffee> fallbackGetAllCoffee() {
+        log.error("CoffeeController: fall back for getAll");
+        return Collections.emptyList();
     }
 
     @GetMapping(value = "/", params = "name")

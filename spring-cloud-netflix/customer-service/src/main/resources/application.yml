@@ -17,3 +17,27 @@ eureka:
 
 server:
   port: 8080
+
+feign:
+  hystrix:
+    enabled: true
+
+#hystrix:
+#  propagate:
+#    request-attribute:
+#      enabled: true
+#  command:
+#    #全局默认配置
+#    default:
+#      #线程隔离相关
+#      execution:
+#        isolation:
+#          thread:
+#            #方式执行的超时时间，默认为1000毫秒，在实际场景中需要根据情况设置
+#            timeoutInMilliseconds: 10000
+#
+##waiter-service:
+#ribbon:
+#  ConnectTimeout: 500
+#  ReadTimeout: 3000
+

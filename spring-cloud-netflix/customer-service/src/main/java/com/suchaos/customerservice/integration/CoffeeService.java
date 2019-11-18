@@ -14,7 +14,8 @@ import java.util.List;
  * @author suchao
  * @date 2019/11/17
  */
-@FeignClient(name = "waiter-service", contextId = "coffee-service", path = "/coffee")
+@FeignClient(name = "waiter-service", contextId = "coffee-service", path = "/coffee",
+    fallback = FallbackCoffeeService.class)
 public interface CoffeeService {
 
     @GetMapping(path = "/", params = "!name")
