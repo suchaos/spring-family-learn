@@ -1,0 +1,29 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
+
+server:
+  port: 9000
+
+#turbine:
+#  aggregator:
+#    # cluster-config: customer-service
+#    cluster-config: default
+#  app-config: customer-service,waiter-service
+#  combine-host-port: true
+#  cluster-name-expression: new String("default")
+#  instanceUrlSuffix: /hystrix.stream
+  # 1. cluster-name-expression指定集群名称，默认表达式appName；此时：turbine.app-config需要配置想要监控的应用名称
+  # 2. 当cluster-name-expression: default时，turbine.aggregator.cluster-config可以不写，因为默认就是default
+  # 3. 当cluster-name-expression: metadata['cluster']时，假设想要监控的应用配置了eureka.instance.metadata-map.cluster: ABC，则需要配置，同时turbine.aggregator.cluster-config: ABC
+turbine:
+  combine-host-port: true
+  app-config: customer-service
+  #cluster-name-expression: new String("default")
+  cluster-name-expression: new String("customer-service")
+  aggregator:
+    # cluster-config: default
+    cluster-config: customer-service
