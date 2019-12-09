@@ -20,6 +20,9 @@
                         connectionURL="jdbc:mysql://localhost:3306/test?serverTimezone=UTC&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=true"
                         userId="root"
                         password="password">
+            <!--避免 MyBatis Generator 生成器把其他数据库的同名表生成下来的问题-->
+            <!--http://mybatis.org/generator/usage/mysql.html-->
+            <property name="nullCatalogMeansCurrent" value="true" />
         </jdbcConnection>
 
         <!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，为 true时把JDBC DECIMAL 和
